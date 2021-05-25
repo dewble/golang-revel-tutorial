@@ -1,3 +1,9 @@
+# Revel framework 이용하여 blog 만들기
+>  장재휴, [Go 언어 웹 프로그래밍 철저 입문], 길벗 출판사  
+
+위 책을 참고하여 작성하였습니다
+
+
 # Welcome to Revel
 
 A high-productivity web framework for the [Go language](http://www.golang.org/).
