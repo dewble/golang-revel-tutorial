@@ -1,0 +1,28 @@
+{{set . "title" "All Posts"}}
+{{template "header.html" .}}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Created at</th>
+            <th>Updated at</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{range.posts}}
+        <tr>
+            <th scope="row">{{.Id}}</th>
+            <td>{{.Title}}</td>
+            <td><time>{{formatDate .CreatedAt}}</time></td>
+            <td><time>{{formatDate .UpdatedAt}}</time></td>
+        </tr>
+        {{end}}
+    </tbody>
+</table>
+
+<!-- 새 포스트 작성 링크 추가 -->
+<p><a href="{{url "Post.New" }}">New Post</a></p>
+
+{{template "footer.html" .}}

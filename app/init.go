@@ -1,9 +1,10 @@
 package app
 
 import (
-	"github.com/revel/revel"
-	_ "github.com/revel/modules"
+	"time"
 
+	_ "github.com/revel/modules"
+	"github.com/revel/revel"
 )
 
 var (
@@ -30,6 +31,9 @@ func init() {
 		revel.CompressFilter,          // Compress the result.
 		revel.BeforeAfterFilter,       // Call the before and after filter functions
 		revel.ActionInvoker,           // Invoke the action.
+	}
+	revel.TemplateFuncs["formatDate"] = func(date time.Time) string {
+		return date.Format("2006/01/02 03:04")
 	}
 
 	// Register startup functions with OnAppStart
