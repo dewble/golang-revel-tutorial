@@ -13,6 +13,23 @@ GET     /                                       Home.Index
 GET     /posts                                  Post.Index
 POST    /posts                                  Post.Create
 GET     /posts/new                              Post.New
+GET     /posts/:id                              Post.Show
+
+## Edit
+GET     /posts/:id/edit                         Post.Edit
+
+
+## Update
+PUT     /posts/:id                              Post.Update
+POST    /posts/:id                              Post.Update
+
+## Delete
+GET     /posts/:id/delete                       Post.Destroy
+DELETE  /posts/:id                              Post.Destroy
+
+## Comment
+POST   /posts/:postId/comments        Comment.Create
+
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

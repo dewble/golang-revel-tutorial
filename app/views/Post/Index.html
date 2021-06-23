@@ -11,13 +11,16 @@
         </tr>
     </thead>
     <tbody>
-        {{range.posts}}
-        <tr>
-            <th scope="row">{{.Id}}</th>
-            <td>{{.Title}}</td>
-            <td><time>{{formatDate .CreatedAt}}</time></td>
-            <td><time>{{formatDate .UpdatedAt}}</time></td>
-        </tr>
+        {{range .posts}}
+            <tr>
+                <th scope="row">{{.Id}}</th>
+                <td>{{.Title}}</td>
+                <td><time>{{.CreatedAt}}</time></td>
+                <td><time>{{.UpdatedAt}}</time></td>
+                <td><a href="{{url "Post.Show" .Id}}">Show</a></td>
+                <td><a href="{{url "Post.Edit" .Id}}">Edit</a></td>
+                <td><a href="{{url "Post.Destroy" .Id}}">Destroy</a></td>
+            </tr>
         {{end}}
     </tbody>
 </table>

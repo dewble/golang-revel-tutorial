@@ -1,0 +1,47 @@
+{{set . "title" "Show Post"}}
+{{template "header.html" .}}
+  
+<p>
+    <b>Title: </b>
+    {{ .post.Title}}
+</p>
+ 
+<p>
+    <b>Body: </b>
+    {{ .post.Body}}
+</p>
+  
+<h4>Comments: </h4>
+{{range .post.Comments}}
+    <p>
+        <mark>
+            <b>{{.Commenter}}:</b>
+        </mark>
+        {{.Body}}
+        <small>
+            ({{formatDate .CreatedAt}})
+        </small>
+    </p>
+{{end}}
+  
+<h4>Add a comment:</h4>
+<form method="POST" action="{{url "Comment.Create" .post.Id}}">
+    <div>
+        {{with $field := field "commenter" .}}
+            <label for="commenter">Name</label>
+            <input type="text" id="commenter" name="{{$field.Name}}" placeholder="Commenter"/>
+        {{end}}
+    </div>
+    <div>
+        {{with $field := field "body" .}}
+            <label for="body">Body</label>
+            <input type="text" id="body" name="{{$field.Name}}" placeholder="Body"/>
+        {{end}}
+    </div>
+    <button type="submit">Add comment</button>
+</form>
+  
+<a href="{{url "Post.Edit" .post.Id}}">Edit</a>
+<a href="{{url "Post.Index"}}">Back</a>
+  
+{{template "footer.html" .}}
