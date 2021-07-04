@@ -12,34 +12,11 @@
 </p>
   
 <h4>Comments: </h4>
-{{range .post.Comments}}
-    <p>
-        <mark>
-            <b>{{.Commenter}}:</b>
-        </mark>
-        {{.Body}}
-        <small>
-            ({{formatDate .CreatedAt}})
-        </small>
-    </p>
-{{end}}
+{{template "Comment/_comment.html" .}}
+
   
 <h4>Add a comment:</h4>
-<form method="POST" action="{{url "Comment.Create" .post.Id}}">
-    <div>
-        {{with $field := field "commenter" .}}
-            <label for="commenter">Name</label>
-            <input type="text" id="commenter" name="{{$field.Name}}" placeholder="Commenter"/>
-        {{end}}
-    </div>
-    <div>
-        {{with $field := field "body" .}}
-            <label for="body">Body</label>
-            <input type="text" id="body" name="{{$field.Name}}" placeholder="Body"/>
-        {{end}}
-    </div>
-    <button type="submit">Add comment</button>
-</form>
+{{template "Comment/_form.html" .}}
   
 <a href="{{url "Post.Edit" .post.Id}}">Edit</a>
 <a href="{{url "Post.Index"}}">Back</a>
