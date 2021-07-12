@@ -6,8 +6,14 @@
 module:testrunner
 # module:jobs
 
+GET     /                                       App.Index
+GET     /App/Hello                              App.Hello
 
-GET     /                                       Home.Index
+## APP
+GET     /login  App.Login
+POST    /login  App.CreateSession
+GET     /logout App.DestroySession
+POST    /logout App.DestroySession
 
 ## Post
 GET     /posts                                  Post.Index
@@ -28,7 +34,10 @@ GET     /posts/:id/delete                       Post.Destroy
 DELETE  /posts/:id                              Post.Destroy
 
 ## Comment
-POST   /posts/:postId/comments        Comment.Create
+POST    /posts/:postId/comments                 Comment.Create
+GET     /posts/:postId/comments/:id/delete      Comment.Destroy
+DELETE  /posts/:postId/comments/:id             Comment.Destroy
+
 
 
 # Ignore favicon requests

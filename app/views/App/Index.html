@@ -4,7 +4,7 @@
 <header class="jumbotron" style="background-color:#A9F16C">
   <div class="container">
     <div class="row">
-      <h1>It works!</h1>
+      <h1>It works! {{.greeting}}</h1>
       <p></p>
     </div>
   </div>
@@ -13,7 +13,12 @@
 <div class="container">
   <div class="row">
     <div class="span6">
-      {{template "flash.html" .}}
+      <form action="/App/Hello" method="GET">
+        {{with $field := field "email" .}}
+        <input type="text"  name="{{$field.Name}}" value="{{$field.Flash}}"/>
+        {{end}}
+        <input type="submit" value="send"/>
+      </form>
     </div>
   </div>
 </div>

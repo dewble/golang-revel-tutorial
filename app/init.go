@@ -1,6 +1,7 @@
 package app
 
 import (
+	"goblog/app/models"
 	"time"
 
 	_ "github.com/revel/modules"
@@ -32,8 +33,15 @@ func init() {
 		revel.BeforeAfterFilter,       // Call the before and after filter functions
 		revel.ActionInvoker,           // Invoke the action.
 	}
+
+	// 날짜 서식 지정
 	revel.TemplateFuncs["formatDate"] = func(date time.Time) string {
 		return date.Format("2006/01/02 03:04")
+	}
+
+	// 사용자의 권한 확인
+	revel.TemplateFuncs["isAdmin"] = func(currentUser *models.User) bool {
+		return currentUser != nil && currentUser.Role == "admin"
 	}
 
 	// Register startup functions with OnAppStart
